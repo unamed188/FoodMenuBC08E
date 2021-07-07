@@ -1,4 +1,5 @@
 import { Menu } from "../models/Menu.js"
+import { MonAn } from "../models/MonAn.js";
 
 let menu = new Menu;
 
@@ -50,4 +51,25 @@ window.chinhSua = function (maMon){
         
         console.log('arrInput',arrInput);
     }
+}
+
+document.querySelector('#btnCapNhat').onclick = () =>{
+    let monAnCapNhat = new MonAn();
+
+    //monAnCapNhat.maMon= document.querySelectỏ('#maMon').
+    let arrInput = document.querySelectorAll('#foodForm input, #foodForm select, #foodForm textarea');
+    for(let input of arrInput) {
+        let name = input.getAttribute('name');
+        let value =input.value;
+
+        monAnCapNhat[name] = value;
+    }
+    menu.capNhatMonAn(monAnCapNhat.maMon,monAnCapNhat);
+    
+    menu.renderMenu('tbodyFood');
+    //tắt popup
+    document.querySelector('.btn-secondary').click();
+    menu.luuStorage();
+
+
 }

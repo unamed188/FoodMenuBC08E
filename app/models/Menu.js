@@ -38,6 +38,22 @@ export class Menu {
 
     }
 
+    capNhatMonAn = (ma, monAnCapNhat) => {
+        let monAn = this.arrMonAn.find(objectMonAn => objectMonAn.maMon=== ma);
+
+        //Tìm thấy món ăn khớp vs mã trên popup
+        if(monAn){
+            //Cách 1 cập nhật từng giá trị
+            // monAn.tenMon= monAnCapNhat.tenMon;
+            // monAn.giaMon = monAnCapNhat.giaMon;
+            //Cách 2duyệt thuộc tính es6
+            for(let keyMonAn in monAn) {
+                monAn[keyMonAn] = monAnCapNhat[keyMonAn];
+            }
+        
+        }
+    }
+
     taoMenu = () =>{
         //map: map là hàm dùng để tạo ra 1 mảng mới từ mảng ban đầu
         //[{mon:1,tenMon;'ten mon',gia:''}{mon:2,tenMon;'goi',gia:''},]
