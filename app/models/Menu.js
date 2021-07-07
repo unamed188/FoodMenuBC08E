@@ -7,12 +7,31 @@ export class Menu {
 
     }
 
-    themMonAn = (MonAn) => {
-
+    themMonAn = (monAn) => {
+        this.arrMonAn.push(monAn);
     }
 
-    xoaMonAn = (MonAn) =>{
+    layThongTinMonAn = (maMon) =>{
+        //Tương tự hàm findindex => hàm find trả về đối tượng (phần tử) trong mảng thỏa điều kiện của arrow function
+        //Tìm thấy trả về object đó, không tìm thấy trả về undefine
+        //this.arrMonAn = [{mon:1,tenMon:'ten mon',gia''},{mon:2,tenMon:'goi',gia''}]
+        let monAn = this.arrMonAn.find(objectMonAn => objectMonAn.maMon ===maMon);
+        if(monAn){
+            return monAn
+        }
+        return undefined
+    }
 
+    xoaMonAn = (maMon) =>{//maMon:1 hoặc 2
+        //Muốn xóa 1 phần tử phải tìm ra index của phần tử đó
+        //arr.splice(index,1)
+        //[{mon:1,tenMon:'ten mon',gia''},{mon:2,tenMon:'goi',gia''}]
+        //findIndex là hàm tìm vị trí của phần tử mảng thỏa điều kiện arrowFunction (tìm thấy trả về vị trí, không tìm thấy trả về -1)
+        let index = this.arrMonAn.findIndex((monAn)=>monAn.maMon === maMon)
+        //Nếu tìm thấy thì trả về vị trí, ngc lại không tìm thấy thì trả về -1
+        if(index !== -1){
+            this.arrMonAn.splice(index,1);
+        }
     }
 
     chinhSuaMon =(ma,monAnCapNhat) => {
@@ -34,8 +53,8 @@ export class Menu {
                     <td>${monAn.khuyenMai}</td>
                     <td>${monAn.tinhTrang}</td>
                     <td>
-                        <button>Xóa</button>
-                        <button>Chỉnh sửa</button>
+                        <button onclick="xoaMonAn('${monAn.maMon}')">Xóa</button>
+                        <button data-toggle="modal" data-target="#exampleModal" onclick="chinhSua('${monAn.maMon}')">Chỉnh sửa</button>
                     </td>
                 </tr>        
             `
@@ -48,10 +67,11 @@ export class Menu {
 
         let arrHtmlMenu = this.taoMenu(); //['<tr></tr>','<tr></tr>']
         //foreach(callback): Foreach nhận vào 1 callback có 2 tham số (phần tử của mảng, vị trí phần tử) hàm này sẽ chạy n lần dụa vào n phần tử của mảng
-
+        let content = '';
         arrHtmlMenu.forEach((htmlTrMonAn,index)=>{
-            document.getElementById(idTable).innerHTML += htmlTrMonAn
-        })
+            content += htmlTrMonAn
+        });
+        document.getElementById(idTable).innerHTML = content;
     }
 
     luuStorage() {
