@@ -1,5 +1,10 @@
+import { Menu } from "../models/Menu.js"
 import { MonAn } from "../models/MonAn.js";
 
+
+let menu = new Menu;
+
+menu.layStrorage();
 
 let arrMonAn = [];
 
@@ -52,8 +57,9 @@ document.querySelector("#btnThemMon").onclick = () => {
 document.querySelector('.noiDungHienThi').innerHTML = monAn.hienThiThongTin();
 
 //Thêm món ăn
-arrMonAn.push(monAn);
-localStorage.setItem('danhSachMonAn',JSON.stringify(arrMonAn));
+menu.arrMonAn.push(monAn);
+menu.luuStorage();
+// localStorage.setItem('danhSachMonAn',JSON.stringify(arrMonAn));
 
 };
 

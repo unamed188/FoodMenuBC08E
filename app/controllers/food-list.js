@@ -1,17 +1,23 @@
+import { Menu } from "../models/Menu.js"
 
-let arrMonAn = [];
-let getDataStorage = () => {
+let menu = new Menu;
 
+// let arrMonAn = [];
 
-    if(localStorage.getItem('danhSachMonAn')){
-
-        arrMonAn=JSON.parse(localStorage.getItem('danhSachMonAn'))
-    }
-}
-
-getDataStorage();
+// let getDataStorage = () => {
 
 
+//     if(localStorage.getItem('danhSachMonAn')){
+
+//         menu.arrMonAn=JSON.parse(localStorage.getItem('danhSachMonAn'))
+//     }
+// }
+
+// getDataStorage();
+
+// menu.renderMenu('tbodyFood');
 
 
-console.log('arr');
+// console.log('arr');
+menu.layStrorage();
+menu.renderMenu('tbodyFood');
